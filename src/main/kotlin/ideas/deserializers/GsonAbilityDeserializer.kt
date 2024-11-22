@@ -3,9 +3,8 @@ package org.example.deserializers
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
-import org.example.Ability
-import org.example.AbilityType
-import org.example.PokemonAbility
+import org.example.ideas.Ability
+import org.example.ideas.PokemonAbility
 import java.lang.reflect.Type
 
 class GsonAbilityDeserializer: JsonDeserializer<Ability> {

@@ -3,8 +3,8 @@ package org.example.deserializers
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
-import org.example.Stat
-import org.example.StatType
+import org.example.ideas.Stat
+import org.example.ideas.StatType
 import java.lang.reflect.Type
 import java.net.URL
 

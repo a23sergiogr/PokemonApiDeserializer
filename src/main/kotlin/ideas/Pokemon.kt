@@ -1,5 +1,6 @@
-package org.example
+package org.example.ideas
 
+import org.example.finishclasses.Species
 import java.net.URL
 
 data class Pokemon(
@@ -8,10 +9,10 @@ data class Pokemon(
     val baseExperience: Int?,
     val height: Int?,
     val weight: Int?,
-    val abilities: List<AbilityType>?,
+    val abilities: List<AbilityURL>?,
     val isDefault: Boolean?,
     val cries: URL?,
-    val moves: List<Move>?,
+    val moves: List<MoveURL>?,
     val species: Species?,
     val stats: List<Stat>?,
     val sprites: Sprite?,
@@ -31,7 +32,6 @@ data class Pokemon(
                 abilities=${abilities?.joinToString { it.toString() }},
                 isDefault=$isDefault,
                 cries=$cries,
-                species=${species?.let { it.name } ?: "Unknown"},
                 stats=${stats?.joinToString { it.toString() }},
                 sprite=${sprites.toString()},
             )

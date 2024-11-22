@@ -1,4 +1,4 @@
-package org.example
+package org.example.ideas
 
 import java.net.URL
 
@@ -11,7 +11,7 @@ data class Ability(
     //generation
 )
 
-data class AbilityType(
+data class AbilityURL(
     val name: String?,
     val url: URL?,
 )

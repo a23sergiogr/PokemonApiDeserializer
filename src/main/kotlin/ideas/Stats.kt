@@ -1,4 +1,4 @@
-package org.example
+package org.example.ideas
 
 import java.net.URL
 

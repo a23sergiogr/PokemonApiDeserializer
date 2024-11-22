@@ -5,7 +5,7 @@ import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
 import com.google.gson.JsonParseException
 import java.lang.reflect.Type
-import org.example.Sprite
+import org.example.ideas.Sprite
 import java.net.URL
 
 class GsonSpritesDeserializer: JsonDeserializer<Sprite> {

@@ -2,10 +2,10 @@ package org.example.deserializers
 
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
-import org.example.PokemonAbility
+import org.example.ideas.PokemonAbility
 import java.lang.reflect.Type
 import com.google.gson.JsonDeserializationContext
-import org.example.PokemonType
+import org.example.ideas.PokemonType
 
 class GsonPokemonAbilityDeserializer : JsonDeserializer<PokemonAbility> {
     override fun deserialize(

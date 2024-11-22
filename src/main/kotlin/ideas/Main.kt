@@ -1,9 +1,6 @@
-package org.example
+package org.example.ideas
 
 import com.google.gson.GsonBuilder
-import java.nio.file.Files
-import java.nio.file.Path
-import java.nio.file.Paths
 import java.io.IOException
 import com.google.gson.Gson
 import org.example.deserializers.*
@@ -15,7 +12,7 @@ fun main(){
     val gsonPokemon = GsonBuilder()
         .registerTypeAdapter(Pokemon::class.java, GsonPokemonDeserializer())
         .registerTypeAdapter(Stat::class.java, GsonStatsDeserializer())
-        .registerTypeAdapter(AbilityType::class.java, GsonAbilityTypeDeserializer())
+        .registerTypeAdapter(AbilityURL::class.java, GsonAbilityTypeDeserializer())
         .registerTypeAdapter(Sprite::class.java, GsonSpritesDeserializer())
         .setPrettyPrinting().create()
 
