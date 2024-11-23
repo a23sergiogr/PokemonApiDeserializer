@@ -15,6 +15,7 @@ data class Pokemon(
     val species: Species?,
     val stats: List<Stat>?,
     val sprites: Sprite?,
+    //val types: List<PokemonType>?,
     //val forms: Forms,
     //val game_indices: List<Game_indice>,
     //val held_items: List,
