@@ -1,4 +1,4 @@
-package org.example
+package finishclasses
 
 import java.net.URL
 
@@ -6,7 +6,7 @@ data class Stat(
     val baseStat: Int,
     val effort: Int,
     val name: StatType,
-    val url: URL
+    val url: String
 )
 
 enum class StatType(val displayName: String) {
