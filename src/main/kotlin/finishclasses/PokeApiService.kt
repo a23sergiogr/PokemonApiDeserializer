@@ -21,4 +21,7 @@ interface PokeApiService {
 
     @GET("pokemon-form/{id}/")
     suspend fun getPokemonForm(@Path("id") id: Int): Form
+
+    @GET("ability/{id}")
+    suspend fun getAbility(@Path("id") id: Int): Ability
 }

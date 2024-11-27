@@ -6,18 +6,18 @@ import finishclasses.urlclasses.NamedURLs
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import kotlinx.coroutines.runBlocking
-import kotlin.system.exitProcess
 
 
 fun main() = runBlocking {
     val gson = GsonBuilder()
+        .registerTypeAdapter(NamedURLs::class.java, GsonDeserializerNamedURL())
         .registerTypeAdapter(Pokedex::class.java, GsonDeserializerPokedex())
         .registerTypeAdapter(Species::class.java, GsonDeserializerSpecies())
         .registerTypeAdapter(Pokemon::class.java, GsonDeserializerPokemon())
         .registerTypeAdapter(Sprites::class.java, GsonDeserializerSprites())
-        .registerTypeAdapter(Form::class.java, GsonDeserializerForm())
+        .registerTypeAdapter(Ability::class.java, GsonDeserializerAbility())
         .registerTypeAdapter(Stat::class.java, GsonDeserializerStats())
-        .registerTypeAdapter(NamedURLs::class.java, GsonDeserializerNamedURL())
+        .registerTypeAdapter(Form::class.java, GsonDeserializerForm())
         .create()
 
     val retrofit = Retrofit.Builder()
@@ -30,7 +30,8 @@ fun main() = runBlocking {
     //fetchPokedex(apiService, 2)
     //fetchSpecies(apiService, "aegislash")
     //fetchPokemonForm(apiService, 10041)
-    fetchPokemon(apiService, "bulbasaur")
+    //fetchPokemon(apiService, "bulbasaur")
+    printAbilityDetails(fetchAbility(apiService,1))
 }
 
 suspend fun fetchPokedex(apiService: PokeApiService, id: Int) {
@@ -119,3 +120,36 @@ suspend fun fetchPokemon(apiService: PokeApiService, pokemonName: String) {
         println("Error al obtener los datos del Pokémon: ${e.message}")
     }
 }
+
+suspend fun fetchAbility(apiService: PokeApiService, abilityId: Int): Ability? {
+    return try {
+        val abilityResponse = apiService.getAbility(abilityId) // Assuming a similar endpoint exists
+        abilityResponse
+    } catch (e: Exception) {
+        e.printStackTrace()
+        null
+    }
+}
+fun printAbilityDetails(ability: Ability?) {
+    if (ability == null) {
+        println("Ability not found or unable to fetch details.")
+        return
+    }
+
+    println("Ability Details:")
+    println("ID: ${ability.id}")
+    println("Name: ${ability.name}")
+    println("Effect: ${ability.effect ?: "No effect available"}")
+
+    if (ability.pokemon.isNullOrEmpty()) {
+        println("No Pokémon associated with this ability.")
+    } else {
+        println("Associated Pokémon:")
+        ability.pokemon.forEach { pokemonURL ->
+            val hiddenStatus = if (pokemonURL.isHidden) "Hidden" else "Visible"
+            println("- ${pokemonURL.url.name} ($hiddenStatus)")
+        }
+    }
+}
+
+
