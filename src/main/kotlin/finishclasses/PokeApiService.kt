@@ -24,4 +24,8 @@ interface PokeApiService {
 
     @GET("ability/{id}")
     suspend fun getAbility(@Path("id") id: Int): Ability
+
+
+    @GET("move/{id}")
+    suspend fun getMove(@Path("id") id: Int): Move
 }

@@ -18,6 +18,7 @@ fun main() = runBlocking {
         .registerTypeAdapter(Ability::class.java, GsonDeserializerAbility())
         .registerTypeAdapter(Stat::class.java, GsonDeserializerStats())
         .registerTypeAdapter(Form::class.java, GsonDeserializerForm())
+        .registerTypeAdapter(Move::class.java, GsonDeserializerMove())
         .create()
 
     val retrofit = Retrofit.Builder()
@@ -31,7 +32,8 @@ fun main() = runBlocking {
     //fetchSpecies(apiService, "aegislash")
     //fetchPokemonForm(apiService, 10041)
     //fetchPokemon(apiService, "bulbasaur")
-    printAbilityDetails(fetchAbility(apiService,1))
+    //printAbilityDetails(fetchAbility(apiService,1))
+    fetchMove(apiService,1)
 }
 
 suspend fun fetchPokedex(apiService: PokeApiService, id: Int) {
@@ -151,5 +153,25 @@ fun printAbilityDetails(ability: Ability?) {
         }
     }
 }
+
+suspend fun fetchMove(apiService: PokeApiService, id: Int) {
+    try {
+        val move = apiService.getMove(id)
+        println("Move ID: ${move.id}")
+        println("Name: ${move.name ?: "Unknown"}")
+        println("Accuracy: ${move.accuracy ?: "N/A"}")
+        println("PP: ${move.pp ?: "N/A"}")
+        println("Priority: ${move.priority ?: "N/A"}")
+        println("Power: ${move.power ?: "N/A"}")
+        println("Damage Class: ${move.damageClass ?: "Unknown"}")
+        println("Type: ${move.type ?: "Unknown"}")
+        println("Short Effect: ${move.shortEffect ?: "No description available."}")
+        println("Flavor Text: ${move.flavorText ?: "No flavor text available."}")
+    } catch (e: Exception) {
+        println("Error fetching move:")
+        e.printStackTrace()
+    }
+}
+
 
 
